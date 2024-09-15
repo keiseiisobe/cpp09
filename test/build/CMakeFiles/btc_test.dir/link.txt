@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/btc_test.dir/regex_test.cpp.o CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o -o btc_test  lib/libgtest_main.a lib/libgtest.a 

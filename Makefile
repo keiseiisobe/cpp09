@@ -1,5 +1,5 @@
 NAME = btc
-SRCS = main.cpp
+SRCS = main.cpp Regex.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98

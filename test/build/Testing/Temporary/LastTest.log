@@ -1,0 +1,71 @@
+Start testing: Sep 15 18:15 JST
+----------------------------------------------------------
+1/2 Testing: RegexTest.TrueTest
+1/2 Test: RegexTest.TrueTest
+Command: "/root/cpp09/test/build/btc_test" "--gtest_filter=RegexTest.TrueTest" "--gtest_also_run_disabled_tests"
+Directory: /root/cpp09/test/build
+"RegexTest.TrueTest" start time: Sep 15 18:15 JST
+Output:
+----------------------------------------------------------
+Running main() from /root/cpp09/test/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = RegexTest.TrueTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RegexTest
+[ RUN      ] RegexTest.TrueTest
+[       OK ] RegexTest.TrueTest (0 ms)
+[----------] 1 test from RegexTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RegexTest.TrueTest" end time: Sep 15 18:15 JST
+"RegexTest.TrueTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: RegexTest.FalseTest
+2/2 Test: RegexTest.FalseTest
+Command: "/root/cpp09/test/build/btc_test" "--gtest_filter=RegexTest.FalseTest" "--gtest_also_run_disabled_tests"
+Directory: /root/cpp09/test/build
+"RegexTest.FalseTest" start time: Sep 15 18:15 JST
+Output:
+----------------------------------------------------------
+Running main() from /root/cpp09/test/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = RegexTest.FalseTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RegexTest
+[ RUN      ] RegexTest.FalseTest
+/root/cpp09/test/regex_test.cpp:48: Failure
+Expected equality of these values:
+  my::Regex::isPositiveIntegerPattern("0")
+    Which is: true
+  false
+/root/cpp09/test/regex_test.cpp:50: Failure
+Expected equality of these values:
+  my::Regex::isPositivePointNumberPattern(".0")
+    Which is: true
+  false
+[  FAILED  ] RegexTest.FalseTest (0 ms)
+[----------] 1 test from RegexTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] RegexTest.FalseTest
+
+ 1 FAILED TEST
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Failed.
+"RegexTest.FalseTest" end time: Sep 15 18:15 JST
+"RegexTest.FalseTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 15 18:15 JST
