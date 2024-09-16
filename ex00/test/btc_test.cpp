@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "btc.hpp"
+#include "BitcoinExchange.hpp"
 
 TEST(BtcTest, MainTest)
 {

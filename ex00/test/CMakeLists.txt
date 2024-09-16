@@ -24,7 +24,7 @@ add_executable(
   btc_test.cpp
   loadfile_test.cpp
   ../Regex.cpp
-  ../loadfile.cpp
+  ../BitcoinExchange.cpp
 )
 target_link_libraries(
   btc_test

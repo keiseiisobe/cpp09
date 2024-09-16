@@ -1,4 +1,4 @@
-#include "btc.hpp"
+#include "BitcoinExchange.hpp"
 
 void	csv2map(const string& filename, std::map<string, float>& map)
 {
