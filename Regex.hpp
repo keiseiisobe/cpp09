@@ -1,7 +1,6 @@
 #ifndef REGEX_HPP
 #define REGEX_HPP
 
-#include <iostream> // debug
 #include <string>
 #include <cstdlib>
 
