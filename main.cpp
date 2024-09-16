@@ -1,16 +1,22 @@
-#include <iostream>
-#include <map>
+#include "btc.hpp"
 
-#include "Regex.hpp"
-
-int	main()
+int	main(int argc, char *argv[])
 {
-//	// downloading data.csv
-//	std::map<>	m = getCsvData();
-//	// handle input file looping each line
+	std::map<string, float>	map;
+	try
+	{
+		// downloading data.csv
+		Csv2map("data.csv", map);
+	}
+	catch (string& err_msg)
+	{
+		std::cerr << err_msg << std::endl;
+		return 1;
+	}
+	// handle input file looping each line
 //	while (line = getline(std::cin))
 //	{
-//		std::stringstream	ss = getResult(line);
+//		stringstream	ss = getResult(line);
 //		std::cout << ss << std::endl;
 //	}
 //	return 0;

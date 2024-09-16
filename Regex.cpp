@@ -57,7 +57,7 @@ bool	Regex::isDatePattern(const std::string& str) // yyyy-mm-dd
 	return true;
 }
 
-bool	Regex::isPositiveIntegerPattern(const std::string& str)
+bool	Regex::isPositiveIntegerPattern(const std::string& str) // R"\d+"
 {
 	if (str.empty())
 		return false;
@@ -69,7 +69,7 @@ bool	Regex::isPositiveIntegerPattern(const std::string& str)
 	return true;
 }
 
-bool	Regex::isPositivePointNumberPattern(const std::string& str)
+bool	Regex::isPositivePointNumberPattern(const std::string& str) // R"(\d+|\d+\.\d+)"
 {
 	if (str.empty())
 		return false;

@@ -10,6 +10,7 @@ namespace	my
 	class	Regex
 	{
 		private:
+			// delete
 			Regex();
 			Regex(const Regex&);
 			Regex&	operator=(const Regex&);

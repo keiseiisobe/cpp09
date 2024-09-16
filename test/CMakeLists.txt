@@ -21,7 +21,9 @@ include_directories(../)
 add_executable(
   btc_test
   regex_test.cpp
+  loadfile_test.cpp
   ../Regex.cpp
+  ../loadfile.cpp
 )
 target_link_libraries(
   btc_test

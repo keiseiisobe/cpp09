@@ -236,6 +236,30 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+loadfile_test.o: loadfile_test.cpp.o
+.PHONY : loadfile_test.o
+
+# target to build an object file
+loadfile_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/loadfile_test.cpp.o
+.PHONY : loadfile_test.cpp.o
+
+loadfile_test.i: loadfile_test.cpp.i
+.PHONY : loadfile_test.i
+
+# target to preprocess a source file
+loadfile_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/loadfile_test.cpp.i
+.PHONY : loadfile_test.cpp.i
+
+loadfile_test.s: loadfile_test.cpp.s
+.PHONY : loadfile_test.s
+
+# target to generate assembly for a file
+loadfile_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/loadfile_test.cpp.s
+.PHONY : loadfile_test.cpp.s
+
 regex_test.o: regex_test.cpp.o
 .PHONY : regex_test.o
 
@@ -284,6 +308,30 @@ root/cpp09/Regex.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.s
 .PHONY : root/cpp09/Regex.cpp.s
 
+root/cpp09/loadfile.o: root/cpp09/loadfile.cpp.o
+.PHONY : root/cpp09/loadfile.o
+
+# target to build an object file
+root/cpp09/loadfile.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o
+.PHONY : root/cpp09/loadfile.cpp.o
+
+root/cpp09/loadfile.i: root/cpp09/loadfile.cpp.i
+.PHONY : root/cpp09/loadfile.i
+
+# target to preprocess a source file
+root/cpp09/loadfile.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.i
+.PHONY : root/cpp09/loadfile.cpp.i
+
+root/cpp09/loadfile.s: root/cpp09/loadfile.cpp.s
+.PHONY : root/cpp09/loadfile.s
+
+# target to generate assembly for a file
+root/cpp09/loadfile.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.s
+.PHONY : root/cpp09/loadfile.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -302,12 +350,18 @@ help:
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... loadfile_test.o"
+	@echo "... loadfile_test.i"
+	@echo "... loadfile_test.s"
 	@echo "... regex_test.o"
 	@echo "... regex_test.i"
 	@echo "... regex_test.s"
 	@echo "... root/cpp09/Regex.o"
 	@echo "... root/cpp09/Regex.i"
 	@echo "... root/cpp09/Regex.s"
+	@echo "... root/cpp09/loadfile.o"
+	@echo "... root/cpp09/loadfile.i"
+	@echo "... root/cpp09/loadfile.s"
 .PHONY : help
 
 
