@@ -1,4 +1,5 @@
-RegexTest.TrueTest 1 0.00513037
-RegexTest.FalseTest 1 0.00439703
-LoadFileTest.CsvTest 1 0.00872483
+RegexTest.TrueTest 2 0.00353834
+RegexTest.FalseTest 2 0.00329123
+LoadFileTest.CsvTest 2 0.00332935
+LoadFileTest.TxtFile 1 0.00406041
 ---

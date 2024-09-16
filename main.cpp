@@ -2,22 +2,21 @@
 
 int	main(int argc, char *argv[])
 {
+	if (argc != 2)
+	{
+		std::cerr << "Notice: ./btc [filename]" << std::endl;
+		return 1;
+	}
 	std::map<string, float>	map;
 	try
 	{
-		// downloading data.csv
-		Csv2map("data.csv", map);
+		csv2map("data.csv", map);
+		exchangeBtc(map, argv[1]);
 	}
 	catch (string& err_msg)
 	{
 		std::cerr << err_msg << std::endl;
 		return 1;
 	}
-	// handle input file looping each line
-//	while (line = getline(std::cin))
-//	{
-//		stringstream	ss = getResult(line);
-//		std::cout << ss << std::endl;
-//	}
-//	return 0;
+	return 0;
 }
