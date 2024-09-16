@@ -83,10 +83,24 @@ CMakeFiles/btc_test.dir/regex_test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/btc_test.dir/regex_test.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/cpp09/test/regex_test.cpp -o CMakeFiles/btc_test.dir/regex_test.cpp.s
 
+CMakeFiles/btc_test.dir/btc_test.cpp.o: CMakeFiles/btc_test.dir/flags.make
+CMakeFiles/btc_test.dir/btc_test.cpp.o: /root/cpp09/test/btc_test.cpp
+CMakeFiles/btc_test.dir/btc_test.cpp.o: CMakeFiles/btc_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/btc_test.dir/btc_test.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/btc_test.dir/btc_test.cpp.o -MF CMakeFiles/btc_test.dir/btc_test.cpp.o.d -o CMakeFiles/btc_test.dir/btc_test.cpp.o -c /root/cpp09/test/btc_test.cpp
+
+CMakeFiles/btc_test.dir/btc_test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/btc_test.dir/btc_test.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /root/cpp09/test/btc_test.cpp > CMakeFiles/btc_test.dir/btc_test.cpp.i
+
+CMakeFiles/btc_test.dir/btc_test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/btc_test.dir/btc_test.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/cpp09/test/btc_test.cpp -o CMakeFiles/btc_test.dir/btc_test.cpp.s
+
 CMakeFiles/btc_test.dir/loadfile_test.cpp.o: CMakeFiles/btc_test.dir/flags.make
 CMakeFiles/btc_test.dir/loadfile_test.cpp.o: /root/cpp09/test/loadfile_test.cpp
 CMakeFiles/btc_test.dir/loadfile_test.cpp.o: CMakeFiles/btc_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/btc_test.dir/loadfile_test.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/btc_test.dir/loadfile_test.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/btc_test.dir/loadfile_test.cpp.o -MF CMakeFiles/btc_test.dir/loadfile_test.cpp.o.d -o CMakeFiles/btc_test.dir/loadfile_test.cpp.o -c /root/cpp09/test/loadfile_test.cpp
 
 CMakeFiles/btc_test.dir/loadfile_test.cpp.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/btc_test.dir/loadfile_test.cpp.s: cmake_force
 CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o: CMakeFiles/btc_test.dir/flags.make
 CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o: /root/cpp09/Regex.cpp
 CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o: CMakeFiles/btc_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o -MF CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o.d -o CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o -c /root/cpp09/Regex.cpp
 
 CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.s: cmake_force
 CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o: CMakeFiles/btc_test.dir/flags.make
 CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o: /root/cpp09/loadfile.cpp
 CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o: CMakeFiles/btc_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o -MF CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o.d -o CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o -c /root/cpp09/loadfile.cpp
 
 CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.i: cmake_force
@@ -128,6 +142,7 @@ CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.s: cmake_force
 # Object files for target btc_test
 btc_test_OBJECTS = \
 "CMakeFiles/btc_test.dir/regex_test.cpp.o" \
+"CMakeFiles/btc_test.dir/btc_test.cpp.o" \
 "CMakeFiles/btc_test.dir/loadfile_test.cpp.o" \
 "CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o" \
 "CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o"
@@ -136,6 +151,7 @@ btc_test_OBJECTS = \
 btc_test_EXTERNAL_OBJECTS =
 
 btc_test: CMakeFiles/btc_test.dir/regex_test.cpp.o
+btc_test: CMakeFiles/btc_test.dir/btc_test.cpp.o
 btc_test: CMakeFiles/btc_test.dir/loadfile_test.cpp.o
 btc_test: CMakeFiles/btc_test.dir/root/cpp09/Regex.cpp.o
 btc_test: CMakeFiles/btc_test.dir/root/cpp09/loadfile.cpp.o
@@ -143,7 +159,7 @@ btc_test: CMakeFiles/btc_test.dir/build.make
 btc_test: lib/libgtest_main.a
 btc_test: lib/libgtest.a
 btc_test: CMakeFiles/btc_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable btc_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/root/cpp09/test/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable btc_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/btc_test.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -D TEST_TARGET=btc_test -D TEST_EXECUTABLE=/root/cpp09/test/build/btc_test -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/root/cpp09/test/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=btc_test_TESTS -D CTEST_FILE=/root/cpp09/test/build/btc_test[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.28/Modules/GoogleTestAddTests.cmake
 

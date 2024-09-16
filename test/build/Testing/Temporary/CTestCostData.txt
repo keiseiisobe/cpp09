@@ -1,5 +1,7 @@
-RegexTest.TrueTest 2 0.00353834
-RegexTest.FalseTest 2 0.00329123
-LoadFileTest.CsvTest 2 0.00332935
-LoadFileTest.TxtFile 1 0.00406041
+RegexTest.TrueTest 1 0.00942635
+RegexTest.FalseTest 1 0.00496259
+BtcTest.MainTest 1 0.0116032
+LoadFileTest.CsvTest 1 0.0108329
+LoadFileTest.CsvErrorHandlingTest 1 0.00426152
+LoadFileTest.TxtErrorHandlingTest 1 0.00402876
 ---

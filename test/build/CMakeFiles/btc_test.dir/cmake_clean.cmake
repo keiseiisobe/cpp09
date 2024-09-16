@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/btc_test.dir/btc_test.cpp.o"
+  "CMakeFiles/btc_test.dir/btc_test.cpp.o.d"
   "CMakeFiles/btc_test.dir/loadfile_test.cpp.o"
   "CMakeFiles/btc_test.dir/loadfile_test.cpp.o.d"
   "CMakeFiles/btc_test.dir/regex_test.cpp.o"

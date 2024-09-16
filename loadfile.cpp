@@ -47,6 +47,8 @@ string	getResult(std::map<string, float>& db, const string& line)
 	{
 		db[key] = 0;
 		std::map<string, float>::iterator	it = db.find(key);
+		if (it == db.begin()) // date referenced by key is older than date bitcoin launched.
+			throw string("Error: too old date.");
 		ss << (--it)->second * v;
 		db.erase(key);
 	}

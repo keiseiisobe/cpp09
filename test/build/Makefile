@@ -236,6 +236,30 @@ gtest_main/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build.make _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/build
 .PHONY : gtest_main/fast
 
+btc_test.o: btc_test.cpp.o
+.PHONY : btc_test.o
+
+# target to build an object file
+btc_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/btc_test.cpp.o
+.PHONY : btc_test.cpp.o
+
+btc_test.i: btc_test.cpp.i
+.PHONY : btc_test.i
+
+# target to preprocess a source file
+btc_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/btc_test.cpp.i
+.PHONY : btc_test.cpp.i
+
+btc_test.s: btc_test.cpp.s
+.PHONY : btc_test.s
+
+# target to generate assembly for a file
+btc_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/btc_test.dir/build.make CMakeFiles/btc_test.dir/btc_test.cpp.s
+.PHONY : btc_test.cpp.s
+
 loadfile_test.o: loadfile_test.cpp.o
 .PHONY : loadfile_test.o
 
@@ -350,6 +374,9 @@ help:
 	@echo "... gmock_main"
 	@echo "... gtest"
 	@echo "... gtest_main"
+	@echo "... btc_test.o"
+	@echo "... btc_test.i"
+	@echo "... btc_test.s"
 	@echo "... loadfile_test.o"
 	@echo "... loadfile_test.i"
 	@echo "... loadfile_test.s"
