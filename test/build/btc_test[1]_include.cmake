@@ -1,5 +1,0 @@
-if(EXISTS "/root/cpp09/test/build/btc_test[1]_tests.cmake")
-  include("/root/cpp09/test/build/btc_test[1]_tests.cmake")
-else()
-  add_test(btc_test_NOT_BUILT btc_test_NOT_BUILT)
-endif()
