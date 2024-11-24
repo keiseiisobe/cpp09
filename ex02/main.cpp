@@ -1,18 +1,25 @@
-#include "PmergeMe.hpp"
+#include "PosIntSeqArg.hpp"
+#include <iostream>
+#include <vector>
 
-int	main(int argc, char *argv[])
+int main(int argc, const char *argv[])
 {
-	if (argc != 2)
+	try
 	{
-		std::cerr << "Notice: ./PmergeMe [positive integer sequence]" << std::endl;
-		return 1;
+		PosIntSeqArg arg(argc, argv);
+		std::vector<size_t> value = arg.getSeq();
+		std::vector<size_t>::iterator it = value.begin();
+		for (; it != value.end(); it++) {
+			std::cout << *it << " " << std::endl;
+		}
 	}
-	std::array<int>	a;
-	arg2intSeq(a, argv[1]);
-
-	std::list<int>	l;
-	intSeq2list(l, a);
-
-//	std::vector<int>	v;
-//	intSeq2vector(v, argv[1]);
+	catch(std::string& msg)
+	{
+		std::cout << "PmergeMe: " << msg << std::endl;
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "PmergeMe: " << e.what() << std::endl;
+	}
+    return 0;
 }

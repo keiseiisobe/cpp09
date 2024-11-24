@@ -1,5 +1,5 @@
 NAME = PmergeMe
-SRCS = main.cpp PmergeMe.cpp
+SRCS = main.cpp PosIntSeqArg.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
