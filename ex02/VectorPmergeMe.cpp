@@ -1,7 +1,7 @@
 #include "VectorPmergeMe.hpp"
 
 VectorPmergeMe::VectorPmergeMe(std::vector<size_t>& seq)
-	: seq_(seq)
+	: seq_(seq), size_(seq.size()), currentPos_(0), beginPos_(0), prePos_(0)
 {
 }
 
@@ -108,6 +108,27 @@ std::vector<std::pair<size_t, size_t> > VectorPmergeMe::sortPair(std::vector<std
 	return sortedP;
 }
 
+void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, size_t remain)
+{
+	int state = 0;
+	beginPos_ = 3;
+	currentPos_ = beginPos_;
+	prePos_ = 1;
+	for (;seq_.size() < size_;)
+	{
+		switch (state)
+		{
+		case beforeSearch:
+			if (currentPos_ < p.size() - 1)
+			{
+				currentPos_--;
+				break;
+			}
+		case search:
+		}
+	}
+}
+
 void VectorPmergeMe::sort()
 {
 	if (seq_.size() <= 4)
@@ -123,11 +144,8 @@ void VectorPmergeMe::sort()
 	createNewSeq(tmp);
 	sort();
 	std::vector<std::pair<size_t, size_t> > sortedTmp = sortPair(tmp);
-#ifdef DEBUG
-	std::vector<std::pair<size_t, size_t> >::iterator it = sortedTmp.begin();
-	for (;it != sortedTmp.end();it++)
-	{
-		std::cout << it->first << " " << it->second << std::endl;
-	}
-#endif
+	// create main chain
+	seq_.insert(seq_.begin(), sortedTmp[0].second);
+	// sort main chain
+	sortInternal(sortedTmp, remain);
 }

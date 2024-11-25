@@ -7,6 +7,13 @@
 #include <utility>
 #include <iostream>
 
+enum state
+{
+	start = 0,
+	firstInsert
+};
+
+
 class VectorPmergeMe
 {
 public:
@@ -21,6 +28,11 @@ public:
 	void sort();
 private:
 	std::vector<size_t> seq_;
+	size_t size_;
+	size_t currentPos_;
+	size_t beginPos_;
+	size_t prePos_;
+	std::pair<size_t, size_t> range_;
 };
 
 #endif
