@@ -21,10 +21,12 @@ public:
 	~VectorPmergeMe();
 	const std::vector<size_t>& getSeq() const;
 	void swapValue(int index1, int index2);
-	void binaryInsertion();
+	void smallBinaryInsertion();
 	std::vector<std::pair<size_t, size_t> > makePairVector();
 	void createNewSeq(std::vector<std::pair<size_t, size_t> >&);
 	std::vector<std::pair<size_t, size_t> > sortPair(std::vector<std::pair<size_t, size_t> >&);
+	void binaryInsertion(size_t value);
+	void sortInternal(std::vector<std::pair<size_t, size_t> >& p, size_t remain);
 	void sort();
 private:
 	std::vector<size_t> seq_;
@@ -33,6 +35,6 @@ private:
 	size_t beginPos_;
 	size_t prePos_;
 	std::pair<size_t, size_t> range_;
+	size_t rangeLast_;
 };
-
 #endif

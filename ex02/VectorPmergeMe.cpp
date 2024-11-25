@@ -21,7 +21,7 @@ void VectorPmergeMe::swapValue(int index1, int index2)
     seq_[index2] = tmp;
 }
 
-void VectorPmergeMe::binaryInsertion()
+void VectorPmergeMe::smallBinaryInsertion()
 {
 	switch (seq_.size())
 	{
@@ -108,23 +108,59 @@ std::vector<std::pair<size_t, size_t> > VectorPmergeMe::sortPair(std::vector<std
 	return sortedP;
 }
 
+// insert "value" among "range" of "seq"
+void VectorPmergeMe::binaryInsertion(size_t value)
+{
+	size_t diff = range_.second - range_.first;
+	if (diff <= 1)
+	{
+		if (range_.first == 0 && range_.second == 1)
+		{
+			if (value < seq_[0])
+				seq_.insert(seq_.begin(), value);
+			else
+				seq_.insert(seq_.begin() + 1, value);
+		}
+		else if (range_.first == (rangeLast_ - 1) && range_.second == rangeLast_)
+			seq_.insert(seq_.begin() + rangeLast_ + 1, value);
+		// insert value at the top of seq.
+		else if (diff == 0 && range_.second == 0)
+			seq_.insert(seq_.begin(), value);
+		// insert value at the end of seq.
+		else if (diff == 0 && range_.second != 0)
+			seq_.insert(seq_.end(), value);
+		else
+			seq_.insert(seq_.begin() + range_.second, value);
+		return;
+	}
+	size_t i = diff / 2;
+	if (value < seq_[i])
+		range_.second = i;
+	else
+		range_.first = i;
+	binaryInsertion(value);
+}
+
 void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, size_t remain)
 {
+	size_t sortedNum = 3;
 	int state = 0;
-	beginPos_ = 3;
+	size_t nSquare = 2*2;
+	beginPos_ = nSquare - 2;
 	currentPos_ = beginPos_;
 	prePos_ = 1;
 	for (;seq_.size() < size_;)
 	{
 		switch (state)
 		{
-		case beforeSearch:
-			if (currentPos_ < p.size() - 1)
+		case readyForInsert:
+			if (currentPos_ <= prePos_)
 			{
-				currentPos_--;
-				break;
+				nSquare *= 2;
+				prePos_ = beginPos_;
 			}
-		case search:
+			if (p.size() < currentPos_ + 1)
+				currentPos_--;
 		}
 	}
 }
@@ -133,7 +169,7 @@ void VectorPmergeMe::sort()
 {
 	if (seq_.size() <= 4)
 	{
-		binaryInsertion();
+		smallBinaryInsertion();
 		return;
 	}
 	ssize_t remain = -1;
