@@ -26,11 +26,10 @@ public:
 	void createNewSeq(std::vector<std::pair<size_t, size_t> >&);
 	std::vector<std::pair<size_t, size_t> > sortPair(std::vector<std::pair<size_t, size_t> >&);
 	void binaryInsertion(size_t value);
-	void sortInternal(std::vector<std::pair<size_t, size_t> >& p, size_t remain);
+	void sortInternal(std::vector<std::pair<size_t, size_t> >& p, ssize_t remain, size_t size);
 	void sort();
 private:
 	std::vector<size_t> seq_;
-	size_t size_;
 	size_t currentPos_;
 	size_t beginPos_;
 	size_t prePos_;

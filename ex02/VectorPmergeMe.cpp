@@ -1,7 +1,7 @@
 #include "VectorPmergeMe.hpp"
 
 VectorPmergeMe::VectorPmergeMe(std::vector<size_t>& seq)
-	: seq_(seq), size_(seq.size()), currentPos_(0), beginPos_(0), prePos_(0)
+	: seq_(seq), currentPos_(0), beginPos_(0), prePos_(0)
 {
 }
 
@@ -111,69 +111,175 @@ std::vector<std::pair<size_t, size_t> > VectorPmergeMe::sortPair(std::vector<std
 // insert "value" among "range" of "seq"
 void VectorPmergeMe::binaryInsertion(size_t value)
 {
+#ifdef DEBUG
+	std::cout << "binaryinsertion" << std::endl;
+	std::cout << "goint to insert " << value << std::endl;
+#endif
 	size_t diff = range_.second - range_.first;
 	if (diff <= 1)
 	{
-		if (range_.first == 0 && range_.second == 1)
+		std::cout << rangeLast_ << std::endl;
+		if (range_.first == 0)
 		{
 			if (value < seq_[0])
 				seq_.insert(seq_.begin(), value);
 			else
-				seq_.insert(seq_.begin() + 1, value);
+			{
+				if (value < seq_[1])
+					seq_.insert(seq_.begin() + 1, value);
+				else
+					seq_.insert(seq_.begin() + 2, value);
+			}
 		}
-		else if (range_.first == (rangeLast_ - 1) && range_.second == rangeLast_)
-			seq_.insert(seq_.begin() + rangeLast_ + 1, value);
-		// insert value at the top of seq.
-		else if (diff == 0 && range_.second == 0)
-			seq_.insert(seq_.begin(), value);
-		// insert value at the end of seq.
-		else if (diff == 0 && range_.second != 0)
-			seq_.insert(seq_.end(), value);
+		else if (range_.second == rangeLast_)
+		{
+			if (value < seq_[range_.first])
+				seq_.insert(seq_.begin() + range_.first, value);
+			else
+			{
+				if (value < seq_[range_.second])
+					seq_.insert(seq_.begin() + range_.second, value);
+				else
+					seq_.insert(seq_.begin() + range_.second + 1, value);
+			}
+		}
 		else
 			seq_.insert(seq_.begin() + range_.second, value);
+#ifdef DEBUG
+		std::cout << "after insertion" << std::endl;
+		std::vector<size_t>::iterator d1 = seq_.begin();
+		for (;d1 != seq_.end();d1++)
+			std::cout << *d1 << " ";
+		std::cout << std::endl;
+#endif
 		return;
 	}
-	size_t i = diff / 2;
+	size_t i = range_.first + (diff / 2);
+	if (range_.first != 0 && range_.second == rangeLast_ && diff != 2)
+		i += 1;
+#ifdef DEBUG
+	std::cout << "going to compare at seq[" << i << "]" << std::endl;
+#endif
 	if (value < seq_[i])
+	{
+#ifdef DEBUG
+		std::cout << value << " is smaller than " << seq_[i] << std::endl;
+#endif
 		range_.second = i;
+	}
 	else
+	{
+#ifdef DEBUG
+		std::cout << value << " is larger than " << seq_[i] << std::endl;
+#endif
 		range_.first = i;
+	}
+#ifdef DEBUG
+	std::cout << "range(" << range_.first << ", " << range_.second << ")" << std::endl;
+#endif
 	binaryInsertion(value);
 }
 
-void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, size_t remain)
+void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, ssize_t remain, size_t size)
 {
-	size_t sortedNum = 3;
-	int state = 0;
-	size_t nSquare = 2*2;
-	beginPos_ = nSquare - 2;
-	currentPos_ = beginPos_;
-	prePos_ = 1;
-	for (;seq_.size() < size_;)
+#ifdef DEBUG
+	std::cout << "sortInternal" << std::endl;
+	std::cout << "max size: " << size << std::endl;
+	std::cout << "----seq.size(): " << seq_.size() << std::endl;
+	std::vector<size_t>::iterator d1 = seq_.begin();
+	for (;d1 != seq_.end();d1++)
+		std::cout << *d1 << " ";
+	std::cout << std::endl;
+	std::cout << "----p.size(): " << p.size() << std::endl;
+	std::vector<std::pair<size_t, size_t> >::iterator d2 = p.begin();
+	for (;d2 != p.end();d2++)
+		std::cout << "(" << d2->first << " " << d2->second << ")" << std::endl;
+	if (remain != -1)
+		std::cout << remain << std::endl;
+	std::cout << "----------" << std::endl;
+#endif
+	size_t nSquare = 2 * 2;
+	// beginning of insertion process
+	ssize_t begin = nSquare - 1;
+	ssize_t end = 0;
+	for (;seq_.size() < size;)
 	{
-		switch (state)
+		if (seq_.size() <= static_cast<size_t>(begin))
 		{
-		case readyForInsert:
-			if (currentPos_ <= prePos_)
+			if (remain != -1 && (seq_.size() == static_cast<size_t>(begin)))
+			{}
+			else
 			{
-				nSquare *= 2;
-				prePos_ = beginPos_;
+				std::cout << "\t\t\t" << begin << std::endl;
+				begin--;
+				continue;
 			}
-			if (p.size() < currentPos_ + 1)
-				currentPos_--;
 		}
+		std::vector<std::pair<size_t, size_t> >::iterator it = p.begin();
+		for (;it != p.end();it++)
+		{
+			if (it->first == seq_[begin - 1])
+				break;
+		}
+		begin = it - p.begin();
+		size_t beginTmp = begin;
+		for (;begin >= end;begin--)
+		{
+			if (p.size() <= static_cast<size_t>(begin + 1))
+			{
+#ifdef DEBUG
+				std::cout << "going to insert remain " << remain << std::endl;
+#endif
+				range_.first = 0;
+				range_.second = seq_.size() - 1;
+				rangeLast_ = range_.second;
+				binaryInsertion(remain);
+			}
+			else
+			{
+				std::cout << "begin:" << begin << std::endl;
+				std::cout << "end:" << end << std::endl;
+				range_.first = 0;
+				std::vector<size_t>::iterator pos = std::lower_bound(seq_.begin(), seq_.end(), p[begin + 1].first);
+				std::cout << "p[begin].first: " << p[begin].first << std::endl;
+				range_.second = pos - seq_.begin();
+				rangeLast_ =  range_.second;
+#ifdef DEBUG
+				std::cout << "range(0, " << range_.second << ")" << std::endl;
+				std::cout << "going to insert " << p[begin + 1].second << std::endl;
+#endif
+				binaryInsertion(p[begin + 1].second);
+			}
+		}
+		nSquare *= 2;
+		begin = nSquare - 1;
+		end = beginTmp + 1;
+#ifdef DEBUG		
+		std::cout << "max size: " << size << std::endl;
+		std::cout << "seq.size(): " << seq_.size() << std::endl;
+		std::vector<size_t>::iterator d2 = seq_.begin();
+		for (;d2 != seq_.end();d2++)
+			std::cout << *d2 << " ";
+		std::cout << std::endl;
+#endif
 	}
 }
 
 void VectorPmergeMe::sort()
 {
+	std::cout << "sort" << std::endl;
+	std::cout << "----seq.size(): " << seq_.size() << std::endl;
+	std::vector<size_t>::iterator d1 = seq_.begin();
+	for (;d1 != seq_.end();d1++)
+		std::cout << *d1 << " ";
+	std::cout << std::endl;
 	if (seq_.size() <= 4)
 	{
 		smallBinaryInsertion();
 		return;
 	}
+	size_t size = seq_.size();
 	ssize_t remain = -1;
-	(void)remain;
 	if (seq_.size() % 2 != 0)
 		remain = seq_[seq_.size() - 1];
 	std::vector<std::pair<size_t, size_t> > tmp = makePairVector();
@@ -183,5 +289,5 @@ void VectorPmergeMe::sort()
 	// create main chain
 	seq_.insert(seq_.begin(), sortedTmp[0].second);
 	// sort main chain
-	sortInternal(sortedTmp, remain);
+	sortInternal(sortedTmp, remain, size);
 }
