@@ -1,7 +1,7 @@
 #include "VectorPmergeMe.hpp"
 
 VectorPmergeMe::VectorPmergeMe(std::vector<size_t>& seq)
-	: seq_(seq), currentPos_(0), beginPos_(0), prePos_(0)
+	: numOfComparison(0), seq_(seq), rangeLast_(0)
 {
 }
 
@@ -30,10 +30,16 @@ void VectorPmergeMe::smallBinaryInsertion()
 	case 2:
 	case 3:
 	case 4:
+#ifdef DEBUG
+		numOfComparison++;
+#endif
 		if (seq_[0] > seq_[1])
 			swapValue(0, 1);
 		if (seq_.size() == 2)
 			return;
+#ifdef DEBUG
+		numOfComparison++;
+#endif
 		if (seq_[0] > seq_[2])
 		{
 			swapValue(1, 2);
@@ -41,20 +47,32 @@ void VectorPmergeMe::smallBinaryInsertion()
 		}
 		else // (seq_[0] < seq_[2])
 		{
+#ifdef DEBUG
+			numOfComparison++;
+#endif
 			if (seq_[1] > seq_[2])
 				swapValue(1, 2);
 		}
 		if (seq_.size() == 3)
 			return;
+#ifdef DEBUG
+		numOfComparison++;
+#endif
 		if (seq_[1] > seq_[3])
 		{
 			swapValue(2, 3);
 			swapValue(1, 2);
+#ifdef DEBUG
+			numOfComparison++;
+#endif
 			if (seq_[0] > seq_[1])
 				swapValue(0, 1);
 		}
 		else // seq_[1] < seq_[3]
 		{
+#ifdef DEBUG
+			numOfComparison++;
+#endif
 			if (seq_[2] > seq_[3])
 				swapValue(2, 3);
 		}
@@ -70,6 +88,9 @@ std::vector<std::pair<size_t, size_t> > VectorPmergeMe::makePairVector()
 		// p.first -> bigger one
 		// p.second -> smaller one
 		std::pair<size_t, size_t> p;
+#ifdef DEBUG
+		numOfComparison++;
+#endif
 		if (seq_[i] > seq_[i + 1])
 			p = std::make_pair(seq_[i], seq_[i + 1]);
 		else
@@ -113,18 +134,23 @@ void VectorPmergeMe::binaryInsertion(size_t value)
 {
 #ifdef DEBUG
 	std::cout << "binaryinsertion" << std::endl;
-	std::cout << "goint to insert " << value << std::endl;
+	std::cout << "going to insert " << value << std::endl;
 #endif
 	size_t diff = range_.second - range_.first;
 	if (diff <= 1)
 	{
-		std::cout << rangeLast_ << std::endl;
 		if (range_.first == 0)
 		{
+#ifdef DEBUG
+			numOfComparison++;
+#endif
 			if (value < seq_[0])
 				seq_.insert(seq_.begin(), value);
 			else
 			{
+#ifdef DEBUG
+				numOfComparison++;
+#endif
 				if (value < seq_[1])
 					seq_.insert(seq_.begin() + 1, value);
 				else
@@ -133,15 +159,21 @@ void VectorPmergeMe::binaryInsertion(size_t value)
 		}
 		else if (range_.second == rangeLast_)
 		{
-			if (value < seq_[range_.first])
-				seq_.insert(seq_.begin() + range_.first, value);
-			else
-			{
+			//#ifdef DEBUG
+			//numOfComparison++;
+			//#endif
+			//if (value < seq_[range_.first])
+			//	seq_.insert(seq_.begin() + range_.first, value);
+			//else
+			//{
+#ifdef DEBUG
+				numOfComparison++;
+#endif
 				if (value < seq_[range_.second])
 					seq_.insert(seq_.begin() + range_.second, value);
 				else
 					seq_.insert(seq_.begin() + range_.second + 1, value);
-			}
+				//}
 		}
 		else
 			seq_.insert(seq_.begin() + range_.second, value);
@@ -159,6 +191,7 @@ void VectorPmergeMe::binaryInsertion(size_t value)
 		i += 1;
 #ifdef DEBUG
 	std::cout << "going to compare at seq[" << i << "]" << std::endl;
+	numOfComparison++;
 #endif
 	if (value < seq_[i])
 	{
@@ -210,7 +243,6 @@ void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, ss
 			{}
 			else
 			{
-				std::cout << "\t\t\t" << begin << std::endl;
 				begin--;
 				continue;
 			}
@@ -237,11 +269,8 @@ void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, ss
 			}
 			else
 			{
-				std::cout << "begin:" << begin << std::endl;
-				std::cout << "end:" << end << std::endl;
 				range_.first = 0;
 				std::vector<size_t>::iterator pos = std::lower_bound(seq_.begin(), seq_.end(), p[begin + 1].first);
-				std::cout << "p[begin].first: " << p[begin].first << std::endl;
 				range_.second = pos - seq_.begin();
 				rangeLast_ =  range_.second;
 #ifdef DEBUG
@@ -267,12 +296,14 @@ void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, ss
 
 void VectorPmergeMe::sort()
 {
+#ifdef DEBUG
 	std::cout << "sort" << std::endl;
 	std::cout << "----seq.size(): " << seq_.size() << std::endl;
 	std::vector<size_t>::iterator d1 = seq_.begin();
 	for (;d1 != seq_.end();d1++)
 		std::cout << *d1 << " ";
 	std::cout << std::endl;
+#endif
 	if (seq_.size() <= 4)
 	{
 		smallBinaryInsertion();

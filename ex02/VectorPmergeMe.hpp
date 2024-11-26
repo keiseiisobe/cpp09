@@ -7,13 +7,6 @@
 #include <utility>
 #include <iostream>
 
-enum state
-{
-	start = 0,
-	firstInsert
-};
-
-
 class VectorPmergeMe
 {
 public:
@@ -28,11 +21,9 @@ public:
 	void binaryInsertion(size_t value);
 	void sortInternal(std::vector<std::pair<size_t, size_t> >& p, ssize_t remain, size_t size);
 	void sort();
+	size_t numOfComparison;
 private:
 	std::vector<size_t> seq_;
-	size_t currentPos_;
-	size_t beginPos_;
-	size_t prePos_;
 	std::pair<size_t, size_t> range_;
 	size_t rangeLast_;
 };

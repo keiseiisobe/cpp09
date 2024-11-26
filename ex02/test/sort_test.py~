@@ -1,0 +1,12 @@
+import pytest
+import random
+import subprocess
+
+def ten_number_test():
+    num_list = random.sample(range(100), 10)
+    str_list = ["../PmergeMe",]
+    for i in num_list:
+        str_list.append(str(i))
+    subprocess.run(str_list, capture_output=True)
+    res = subprocess.CompletedProcess(stdout)
+    assert "successfully sorted" in res

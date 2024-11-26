@@ -20,4 +20,8 @@ re: fclean all
 debug: CXXFLAGS += -D DEBUG
 debug: $(NAME)
 
-.PHONY: all clean fclean re
+test: CXXFLAGS = -D TEST -std=c++20
+test: $(NAME)
+	cd test && pytest
+
+.PHONY: all clean fclean re test
