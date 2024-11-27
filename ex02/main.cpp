@@ -8,12 +8,13 @@
 #include <sys/time.h>
 
 #ifdef TEST
-bool noDuplication(std::vector<size_t>& v)
+template<class T>
+bool noDuplication(T& t)
 {
-	std::vector<size_t>::iterator it = v.begin();
+	typename T::iterator it = t.begin();
 	size_t prev = *it;
 	it++;
-	for (;it != v.end();it++)
+	for (;it != t.end();it++)
 	{
 		if (prev == *it)
 			return false;
@@ -45,7 +46,7 @@ int main(int argc, const char *argv[])
 		gettimeofday(&vTv2, NULL);
 		std::vector<size_t> vAfter = v.getSeq();
 		std::vector<size_t>::iterator vit = vAfter.begin();
-		std::cout << "vAfter: ";
+		std::cout << "After: ";
 		for (;vit != vAfter.end();vit++) {
 			std::cout << *vit << " ";
 		}
@@ -61,6 +62,7 @@ int main(int argc, const char *argv[])
 		struct timeval lTv2;
 		gettimeofday(&lTv2, NULL);
 		std::list<size_t> lAfter = l.getSeq();
+		/*
 		std::list<size_t>::iterator lit = lAfter.begin();
 		std::cout << "lAfter: ";
 		for (;lit != lAfter.end();lit++)
@@ -68,23 +70,35 @@ int main(int argc, const char *argv[])
 			std::cout << *lit << " ";
 		}
 		std::cout << std::endl;
+		*/
 		double lDiff = lTv2.tv_usec - lTv1.tv_usec;
-		std::cout << "Time to process a range of " << before.size() << " elements with std::vector : " << std::setprecision(6) << lDiff << " us" << std::endl;
+		std::cout << "Time to process a range of " << before.size() << " elements with std::list : " << std::setprecision(6) << lDiff << " us" << std::endl;
 #ifdef TEST
 		if (!std::is_sorted(vAfter.begin(), vAfter.end()))
 		{
-			std::cout << "PmergeMeTest: sort failed" << std::endl;
+			std::cout << "PmergeMeTest: sort failed in vector" << std::endl;
 			return 0;
 		}
 		else if (!noDuplication(vAfter))
 		{
-			std::cout << "PmergeMeTest: duplication after sort" << std::endl;
+			std::cout << "PmergeMeTest: duplication after sort in vector" << std::endl;
+			return 0;
+		}
+		else if (!std::is_sorted(lAfter.begin(), lAfter.end()))
+		{
+			std::cout << "PmergeMeTest: sort failed in list" << std::endl;
+			return 0;
+		}
+		else if (!noDuplication(lAfter))
+		{
+			std::cout << "PmergeMeTest: duplication after sort in list" << std::endl;
 			return 0;
 		}
 		else
 		{
 			std::cout << "successfully sorted" << std::endl;
-			std::cout << "total comparison: " << v.numOfComparison << std::endl;
+			std::cout << "total comparison of vector: " << v.numOfComparison << std::endl;
+			std::cout << "total comparison of list: " << l.numOfComparison << std::endl;
 		}
 #endif
 	}

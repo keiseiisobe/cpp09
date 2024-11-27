@@ -2,7 +2,9 @@ import random
 import subprocess
 
 EXE = "../PmergeMe"
-COMP_MSG = "total comparison: "
+SORT_MSG = "successfully sorted"
+COMP_MSG_OF_VEC = "total comparison of vector: "
+COMP_MSG_OF_LIS = "total comparison of list: "
 
 def test_15():
     for n in range(100):
@@ -11,11 +13,25 @@ def test_15():
         for i in num_list:
             str_list.append(str(i))
         res = subprocess.run(str_list, universal_newlines=True, capture_output=True)
-        assert "successfully sorted" in res.stdout
-        assert "total comparison: " in res.stdout
-        pos = res.stdout.find(COMP_MSG)
-        num = int(res.stdout[pos + len(COMP_MSG):])
-        assert num <= 42
+        assert SORT_MSG in res.stdout
+        assert COMP_MSG_OF_VEC in res.stdout
+        assert COMP_MSG_OF_LIS in res.stdout
+        v_pos = res.stdout.find(COMP_MSG_OF_VEC) + len(COMP_MSG_OF_VEC)
+        l_pos = res.stdout.find(COMP_MSG_OF_LIS) + len(COMP_MSG_OF_LIS)
+        v_end = v_pos
+        for i in res.stdout[v_pos]:
+            v_end += 1
+            if not i.isdigit():
+                break
+        l_end = l_pos
+        for i in res.stdout[l_pos]:
+            l_end += 1
+            if not i.isdigit():
+                break
+        v_num = int(res.stdout[v_pos:v_end])
+        l_num = int(res.stdout[l_pos:l_end])
+        assert v_num <= 42
+        assert l_num <= 42
         
 def test_20():
     for n in range(100):
@@ -24,11 +40,25 @@ def test_20():
         for i in num_list:
             str_list.append(str(i))
         res = subprocess.run(str_list, universal_newlines=True, capture_output=True)
-        assert "successfully sorted" in res.stdout
-        assert "total comparison: " in res.stdout
-        pos = res.stdout.find(COMP_MSG)
-        num = int(res.stdout[pos + len(COMP_MSG):])
-        assert num <= 62
+        assert SORT_MSG in res.stdout
+        assert COMP_MSG_OF_VEC in res.stdout
+        assert COMP_MSG_OF_LIS in res.stdout
+        v_pos = res.stdout.find(COMP_MSG_OF_VEC) + len(COMP_MSG_OF_VEC)
+        l_pos = res.stdout.find(COMP_MSG_OF_LIS) + len(COMP_MSG_OF_LIS)
+        v_end = v_pos
+        for i in res.stdout[v_pos]:
+            v_end += 1
+            if not i.isdigit():
+                break
+        l_end = l_pos
+        for i in res.stdout[l_pos]:
+            l_end += 1
+            if not i.isdigit():
+                break
+        v_num = int(res.stdout[v_pos:v_end])
+        l_num = int(res.stdout[l_pos:l_end])
+        assert v_num <= 62
+        assert l_num <= 62
 
 def test_25():
     for n in range(100):
@@ -37,11 +67,25 @@ def test_25():
         for i in num_list:
             str_list.append(str(i))
         res = subprocess.run(str_list, universal_newlines=True, capture_output=True)
-        assert "successfully sorted" in res.stdout
-        assert "total comparison: " in res.stdout
-        pos = res.stdout.find(COMP_MSG)
-        num = int(res.stdout[pos + len(COMP_MSG):])
-        assert num <= 86
+        assert SORT_MSG in res.stdout
+        assert COMP_MSG_OF_VEC in res.stdout
+        assert COMP_MSG_OF_LIS in res.stdout
+        v_pos = res.stdout.find(COMP_MSG_OF_VEC) + len(COMP_MSG_OF_VEC)
+        l_pos = res.stdout.find(COMP_MSG_OF_LIS) + len(COMP_MSG_OF_LIS)
+        v_end = v_pos
+        for i in res.stdout[v_pos]:
+            v_end += 1
+            if not i.isdigit():
+                break
+        l_end = l_pos
+        for i in res.stdout[l_pos]:
+            l_end += 1
+            if not i.isdigit():
+                break
+        v_num = int(res.stdout[v_pos:v_end])
+        l_num = int(res.stdout[l_pos:l_end])
+        assert v_num <= 86
+        assert l_num <= 86
         
 def test_30():
     for n in range(100):
@@ -50,11 +94,25 @@ def test_30():
         for i in num_list:
             str_list.append(str(i))
         res = subprocess.run(str_list, universal_newlines=True, capture_output=True)
-        assert "successfully sorted" in res.stdout
-        assert "total comparison: " in res.stdout
-        pos = res.stdout.find(COMP_MSG)
-        num = int(res.stdout[pos + len(COMP_MSG):])
-        assert num <= 111
+        assert SORT_MSG in res.stdout
+        assert COMP_MSG_OF_VEC in res.stdout
+        assert COMP_MSG_OF_LIS in res.stdout
+        v_pos = res.stdout.find(COMP_MSG_OF_VEC) + len(COMP_MSG_OF_VEC)
+        l_pos = res.stdout.find(COMP_MSG_OF_LIS) + len(COMP_MSG_OF_LIS)
+        v_end = v_pos
+        for i in res.stdout[v_pos]:
+            v_end += 1
+            if not i.isdigit():
+                break
+        l_end = l_pos
+        for i in res.stdout[l_pos]:
+            l_end += 1
+            if not i.isdigit():
+                break
+        v_num = int(res.stdout[v_pos:v_end])
+        l_num = int(res.stdout[l_pos:l_end])
+        assert v_num <= 111
+        assert l_num <= 111
         
 def test_33():
     for n in range(100):
@@ -63,8 +121,22 @@ def test_33():
         for i in num_list:
             str_list.append(str(i))
         res = subprocess.run(str_list, universal_newlines=True, capture_output=True)
-        assert "successfully sorted" in res.stdout
-        assert "total comparison: " in res.stdout
-        pos = res.stdout.find(COMP_MSG)
-        num = int(res.stdout[pos + len(COMP_MSG):])
-        assert num <= 126
+        assert SORT_MSG in res.stdout
+        assert COMP_MSG_OF_VEC in res.stdout
+        assert COMP_MSG_OF_LIS in res.stdout
+        v_pos = res.stdout.find(COMP_MSG_OF_VEC) + len(COMP_MSG_OF_VEC)
+        l_pos = res.stdout.find(COMP_MSG_OF_LIS) + len(COMP_MSG_OF_LIS)
+        v_end = v_pos
+        for i in res.stdout[v_pos]:
+            v_end += 1
+            if not i.isdigit():
+                break
+        l_end = l_pos
+        for i in res.stdout[l_pos]:
+            l_end += 1
+            if not i.isdigit():
+                break
+        v_num = int(res.stdout[v_pos:v_end])
+        l_num = int(res.stdout[l_pos:l_end])
+        assert v_num <= 126
+        assert l_num <= 126

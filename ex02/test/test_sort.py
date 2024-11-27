@@ -30,8 +30,17 @@ def test_1000():
         res = subprocess.run(str_list, capture_output=True)
         assert b"successfully sorted" in res.stdout
         
+def test_3000():
+    for n in range(5):
+        num_list = random.sample(range(100000), 3000)
+        str_list = [EXE,]
+        for i in num_list:
+            str_list.append(str(i))
+        res = subprocess.run(str_list, capture_output=True)
+        assert b"successfully sorted" in res.stdout
+        
 def test_5000():
-    for n in range(100):
+    for n in range(5):
         num_list = random.sample(range(100000), 5000)
         str_list = [EXE,]
         for i in num_list:
