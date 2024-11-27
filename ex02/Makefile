@@ -22,6 +22,9 @@ debug: $(NAME)
 
 test: CXXFLAGS = -D TEST -std=c++20
 test: $(NAME)
+
+pytest: CXXFLAGS = -D TEST -std=c++20
+pytest: $(NAME)
 	cd test && pytest
 
 .PHONY: all clean fclean re test

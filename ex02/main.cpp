@@ -2,6 +2,9 @@
 #include "VectorPmergeMe.hpp"
 #include <iostream>
 #include <vector>
+#include <ctime>
+#include <iomanip>
+#include <sys/time.h>
 
 #ifdef TEST
 bool noDuplication(std::vector<size_t>& v)
@@ -31,9 +34,21 @@ int main(int argc, const char *argv[])
 			std::cout << *it << " ";
 		}
 		std::cout << std::endl;
+		struct timeval vTv1;
+		gettimeofday(&vTv1, NULL);
 		VectorPmergeMe v(before);
 		v.sort();
+		struct timeval vTv2;
+		gettimeofday(&vTv2, NULL);
 		std::vector<size_t> vAfter = v.getSeq();
+		std::vector<size_t>::iterator vit = vAfter.begin();
+		std::cout << "After:  ";
+		for (;vit != vAfter.end();vit++) {
+			std::cout << *vit << " ";
+		}
+		std::cout << std::endl;
+		double vDiff = vTv2.tv_usec - vTv1.tv_usec;
+		std::cout << "Time to process a range of " << before.size() << " elements with std::vector : " << std::setprecision(6) << vDiff << " us" << std::endl;
 #ifdef TEST
 		if (!std::is_sorted(vAfter.begin(), vAfter.end()))
 		{
@@ -46,15 +61,11 @@ int main(int argc, const char *argv[])
 			return 0;
 		}
 		else
+		{
 			std::cout << "successfully sorted" << std::endl;
-#endif
-		std::vector<size_t>::iterator vit = vAfter.begin();
-		std::cout << "After:  ";
-		for (;vit != vAfter.end();vit++) {
-			std::cout << *vit << " ";
+			std::cout << "total comparison: " << v.numOfComparison << std::endl;
 		}
-		std::cout << std::endl;
-		std::cout << "total comparison: " << v.numOfComparison << std::endl;
+#endif
 	}
 	catch(std::string& msg)
 	{

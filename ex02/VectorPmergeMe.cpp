@@ -30,14 +30,14 @@ void VectorPmergeMe::smallBinaryInsertion()
 	case 2:
 	case 3:
 	case 4:
-#ifdef DEBUG
+#ifdef TEST
 		numOfComparison++;
 #endif
 		if (seq_[0] > seq_[1])
 			swapValue(0, 1);
 		if (seq_.size() == 2)
 			return;
-#ifdef DEBUG
+#ifdef TEST
 		numOfComparison++;
 #endif
 		if (seq_[0] > seq_[2])
@@ -47,7 +47,7 @@ void VectorPmergeMe::smallBinaryInsertion()
 		}
 		else // (seq_[0] < seq_[2])
 		{
-#ifdef DEBUG
+#ifdef TEST
 			numOfComparison++;
 #endif
 			if (seq_[1] > seq_[2])
@@ -55,14 +55,14 @@ void VectorPmergeMe::smallBinaryInsertion()
 		}
 		if (seq_.size() == 3)
 			return;
-#ifdef DEBUG
+#ifdef TEST
 		numOfComparison++;
 #endif
 		if (seq_[1] > seq_[3])
 		{
 			swapValue(2, 3);
 			swapValue(1, 2);
-#ifdef DEBUG
+#ifdef TEST
 			numOfComparison++;
 #endif
 			if (seq_[0] > seq_[1])
@@ -70,7 +70,7 @@ void VectorPmergeMe::smallBinaryInsertion()
 		}
 		else // seq_[1] < seq_[3]
 		{
-#ifdef DEBUG
+#ifdef TEST
 			numOfComparison++;
 #endif
 			if (seq_[2] > seq_[3])
@@ -88,7 +88,7 @@ std::vector<std::pair<size_t, size_t> > VectorPmergeMe::makePairVector()
 		// p.first -> bigger one
 		// p.second -> smaller one
 		std::pair<size_t, size_t> p;
-#ifdef DEBUG
+#ifdef TEST
 		numOfComparison++;
 #endif
 		if (seq_[i] > seq_[i + 1])
@@ -139,44 +139,34 @@ void VectorPmergeMe::binaryInsertion(size_t value)
 	size_t diff = range_.second - range_.first;
 	if (diff <= 1)
 	{
-		if (range_.first == 0)
+		if (diff == 1)
 		{
-#ifdef DEBUG
+#ifdef TEST
 			numOfComparison++;
 #endif
-			if (value < seq_[0])
-				seq_.insert(seq_.begin(), value);
+			if (value < seq_[range_.first])
+				seq_.insert(seq_.begin() + range_.first, value);
 			else
 			{
-#ifdef DEBUG
-				numOfComparison++;
-#endif
-				if (value < seq_[1])
-					seq_.insert(seq_.begin() + 1, value);
-				else
-					seq_.insert(seq_.begin() + 2, value);
-			}
-		}
-		else if (range_.second == rangeLast_)
-		{
-			//#ifdef DEBUG
-			//numOfComparison++;
-			//#endif
-			//if (value < seq_[range_.first])
-			//	seq_.insert(seq_.begin() + range_.first, value);
-			//else
-			//{
-#ifdef DEBUG
+#ifdef TEST
 				numOfComparison++;
 #endif
 				if (value < seq_[range_.second])
 					seq_.insert(seq_.begin() + range_.second, value);
 				else
-					seq_.insert(seq_.begin() + range_.second + 1, value);
-				//}
+					seq_.insert(seq_.begin()+ range_.second + 1, value);
+			}
 		}
 		else
-			seq_.insert(seq_.begin() + range_.second, value);
+		{
+#ifdef TEST
+			numOfComparison++;
+#endif
+			if (value < seq_[range_.first])
+				seq_.insert(seq_.begin() + range_.first, value);
+			else
+				seq_.insert(seq_.begin() + range_.first + 1, value);
+		}
 #ifdef DEBUG
 		std::cout << "after insertion" << std::endl;
 		std::vector<size_t>::iterator d1 = seq_.begin();
@@ -187,10 +177,10 @@ void VectorPmergeMe::binaryInsertion(size_t value)
 		return;
 	}
 	size_t i = range_.first + (diff / 2);
-	if (range_.first != 0 && range_.second == rangeLast_ && diff != 2)
-		i += 1;
 #ifdef DEBUG
 	std::cout << "going to compare at seq[" << i << "]" << std::endl;
+#endif
+#ifdef TEST
 	numOfComparison++;
 #endif
 	if (value < seq_[i])
@@ -198,14 +188,14 @@ void VectorPmergeMe::binaryInsertion(size_t value)
 #ifdef DEBUG
 		std::cout << value << " is smaller than " << seq_[i] << std::endl;
 #endif
-		range_.second = i;
+		range_.second = i - 1;
 	}
 	else
 	{
 #ifdef DEBUG
 		std::cout << value << " is larger than " << seq_[i] << std::endl;
 #endif
-		range_.first = i;
+		range_.first = i + 1;
 	}
 #ifdef DEBUG
 	std::cout << "range(" << range_.first << ", " << range_.second << ")" << std::endl;
@@ -234,14 +224,12 @@ void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, ss
 	size_t nSquare = 2 * 2;
 	// beginning of insertion process
 	ssize_t begin = nSquare - 1;
-	ssize_t end = 0;
+	ssize_t end = 1;
 	for (;seq_.size() < size;)
 	{
 		if (seq_.size() <= static_cast<size_t>(begin))
 		{
-			if (remain != -1 && (seq_.size() == static_cast<size_t>(begin)))
-			{}
-			else
+			if (!(remain != -1 && (seq_.size() == static_cast<size_t>(begin))))
 			{
 				begin--;
 				continue;
@@ -250,14 +238,19 @@ void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, ss
 		std::vector<std::pair<size_t, size_t> >::iterator it = p.begin();
 		for (;it != p.end();it++)
 		{
-			if (it->first == seq_[begin - 1])
+			if (seq_.size() <= static_cast<size_t>(begin))
+			{
+				it = p.end();
+				break;
+			}
+			if (it->first == seq_[begin])
 				break;
 		}
 		begin = it - p.begin();
 		size_t beginTmp = begin;
 		for (;begin >= end;begin--)
 		{
-			if (p.size() <= static_cast<size_t>(begin + 1))
+			if (p.size() <= static_cast<size_t>(begin))
 			{
 #ifdef DEBUG
 				std::cout << "going to insert remain " << remain << std::endl;
@@ -270,14 +263,14 @@ void VectorPmergeMe::sortInternal(std::vector<std::pair<size_t, size_t> >& p, ss
 			else
 			{
 				range_.first = 0;
-				std::vector<size_t>::iterator pos = std::lower_bound(seq_.begin(), seq_.end(), p[begin + 1].first);
-				range_.second = pos - seq_.begin();
+				std::vector<size_t>::iterator pos = std::lower_bound(seq_.begin(), seq_.end(), p[begin].first);
+				range_.second = (pos - 1) - seq_.begin();
 				rangeLast_ =  range_.second;
 #ifdef DEBUG
 				std::cout << "range(0, " << range_.second << ")" << std::endl;
-				std::cout << "going to insert " << p[begin + 1].second << std::endl;
+				std::cout << "going to insert " << p[begin].second << std::endl;
 #endif
-				binaryInsertion(p[begin + 1].second);
+				binaryInsertion(p[begin].second);
 			}
 		}
 		nSquare *= 2;
