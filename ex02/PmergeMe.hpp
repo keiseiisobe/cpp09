@@ -1,10 +1,10 @@
-#ifndef PMERGEME.hpp
-#define PMERGEME.hpp
+#ifndef PMERGEME_HPP
+#define PMERGEME_HPP
 
 class PmergeMe
 {
 public:
-	virtual ~PmergeMe() {};
+	virtual ~PmergeMe();
 	virtual void sort() = 0;
 };
 

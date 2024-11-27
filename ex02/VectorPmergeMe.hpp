@@ -3,11 +3,11 @@
 
 #include <vector>
 #include <algorithm>
-
+#include "PmergeMe.hpp"
 #include <utility>
 #include <iostream>
 
-class VectorPmergeMe
+class VectorPmergeMe : PmergeMe
 {
 public:
 	VectorPmergeMe(std::vector<size_t>&);
