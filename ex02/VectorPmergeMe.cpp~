@@ -1,6 +1,0 @@
-#include "VectorPmergeMe.hpp"
-
-VectorPmergeMe::VectorPmergeMe(std::vector<size_t>& seq)
-	: seq_(seq)
-{
-}
